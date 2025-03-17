@@ -31,12 +31,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const siteName =
     settings[GLOBAL_SETTINGS_KEYS.SITE_SETTINGS]?.siteName?.trim() ||
-    process.env.NEXT_PUBLIC_SITE_NAME?.trim() ||
     "Default Site Name";
 
   const description =
     settings[SEO_SETTINGS_KEYS.SEO_SETTINGS]?.metaDescription?.trim() ||
     "Default description for SEO.";
+  const siteUrl =
+    settings[GLOBAL_SETTINGS_KEYS.SITE_SETTINGS]?.siteUrl?.trim() ||
+    "http://localhost:3000";
 
   const keywords = settings[SEO_SETTINGS_KEYS.SEO_SETTINGS]?.keywords
     ?.trim()
@@ -44,7 +46,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const ogImage =
     settings[SEO_SETTINGS_KEYS.SEO_SETTINGS]?.ogImage?.trim() ||
-    process.env.NEXT_PUBLIC_OG_IMAGE?.trim() ||
     "/default-og-image.png";
 
   return {
@@ -60,7 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       ],
       type: "website",
-      url: process.env.NEXT_PUBLIC_SITE_URL || "https://example.com",
+      url: siteUrl,
     },
     twitter: {
       card: "summary_large_image",

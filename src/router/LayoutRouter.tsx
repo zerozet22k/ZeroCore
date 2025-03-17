@@ -52,7 +52,6 @@ const LayoutRouter: React.FC<LayoutRouterProps> = ({ children }) => {
   useEffect(() => {
     const siteName =
       settings[GLOBAL_SETTINGS_KEYS.SITE_SETTINGS]?.siteName?.trim() ||
-      process.env.NEXT_PUBLIC_SITE_NAME ||
       "Default Site";
 
     const newTitle = routeConfig?.label

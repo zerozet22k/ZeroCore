@@ -7,7 +7,6 @@ const apiClient = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-// Extend AxiosRequestConfig with a custom _retryAttempt property.
 interface CustomAxiosRequestConfig extends AxiosRequestConfig {
   _retryAttempt?: number;
 }
@@ -85,7 +84,10 @@ apiClient.interceptors.response.use(
     }
 
     // If 401 error, try refreshing token (only up to MAX_RETRIES).
-    if (error.response?.status === 401 && (originalRequest._retryAttempt || 0) < MAX_RETRIES) {
+    if (
+      error.response?.status === 401 &&
+      (originalRequest._retryAttempt || 0) < MAX_RETRIES
+    ) {
       originalRequest._retryAttempt = (originalRequest._retryAttempt || 0) + 1;
 
       const refreshToken = localStorage.getItem("refreshToken");
@@ -104,7 +106,12 @@ apiClient.interceptors.response.use(
         );
 
         // Save new tokens and update the authorization header.
-        saveTokens(data.accessToken, data.refreshToken, data.accessTokenExpiry, data.refreshTokenExpiry);
+        saveTokens(
+          data.accessToken,
+          data.refreshToken,
+          data.accessTokenExpiry,
+          data.refreshTokenExpiry
+        );
         originalRequest.headers = {
           ...originalRequest.headers,
           Authorization: `Bearer ${data.accessToken}`,
