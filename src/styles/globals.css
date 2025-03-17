@@ -1,0 +1,30 @@
+body {
+  background-color: "#f4f4f4";
+}
+/* Light theme scrollbar */
+body.light-theme .ant-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.light-theme .ant-modal-body::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Light color */
+  border-radius: 10px;
+}
+
+body.light-theme .ant-modal-body::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+}
+
+/* Dark theme scrollbar */
+body.dark-theme .ant-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.dark-theme .ant-modal-body::-webkit-scrollbar-thumb {
+  background-color: #444; /* Dark color */
+  border-radius: 10px;
+}
+
+body.dark-theme .ant-modal-body::-webkit-scrollbar-track {
+  background-color: #222;
+}
